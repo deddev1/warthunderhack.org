@@ -76,8 +76,19 @@ function splitUrl(url) {
 
 function resolveFile(pathname) {
   let normalized = decodeURIComponent(pathname);
+
+  // Prefer exact static files (sitemap.xml, robots.txt, etc.) before HTML fallback.
+  const exactPath = path.normalize(path.join(distDir, normalized.replace(/\/$/, '') || ''));
+  if (
+    exactPath.startsWith(distDir) &&
+    fs.existsSync(exactPath) &&
+    fs.statSync(exactPath).isFile()
+  ) {
+    return exactPath;
+  }
+
   if (normalized.endsWith('/')) normalized += 'index.html';
-  if (!path.extname(normalized)) normalized += '.html';
+  else if (!path.extname(normalized)) normalized += '.html';
 
   const filePath = path.normalize(path.join(distDir, normalized));
   if (!filePath.startsWith(distDir)) return null;

@@ -58,22 +58,28 @@ function parseUrls(xml) {
   return urls;
 }
 
-/** Normalize for GSC: https origin, trailing slash, drop junk. */
+/** Normalize for GSC: always https://warthunderhack.org, trailing slash, drop junk. */
 function normalizeUrl(loc) {
   let url;
   try {
-    url = new URL(loc);
+    // Force https even when Astro/proxy emits http:// or protocol-relative URLs.
+    const raw = String(loc || '').trim().replace(/^http:\/\//i, 'https://').replace(/^\/\//, 'https://');
+    url = new URL(raw, SITE);
   } catch {
     return null;
   }
-  if (url.protocol !== 'https:') url.protocol = 'https:';
+  url.protocol = 'https:';
   url.hostname = 'warthunderhack.org';
+  url.port = '';
   url.hash = '';
   url.search = '';
+  url.username = '';
+  url.password = '';
   let pathname = url.pathname;
   if (!pathname.endsWith('/')) pathname += '/';
   if (pathname.includes('/404') || pathname.startsWith('/go/')) return null;
-  return `${SITE}${pathname}`;
+  // Never emit http:// page URLs in any sitemap.
+  return `https://warthunderhack.org${pathname}`;
 }
 
 /** @param {string | undefined} value */
@@ -117,7 +123,7 @@ function renderIndex(children) {
   const body = children
     .map(
       (c) => `  <sitemap>
-    <loc>${SITE}/${c.name}</loc>
+    <loc>https://warthunderhack.org/${c.name}</loc>
     <lastmod>${c.lastmod}</lastmod>
   </sitemap>`,
     )
@@ -192,6 +198,13 @@ fs.writeFileSync(path.join(dist, 'sitemap-0.xml'), renderUrlset(allUrls), 'utf8'
 
 // Point IndexNow at the combined urlset (not the index).
 fs.writeFileSync(path.join(dist, 'sitemap-all.xml'), renderUrlset(allUrls), 'utf8');
+
+// Fail build if any non-https page URL slipped through.
+const httpLeak = allUrls.find((u) => !u.loc.startsWith('https://warthunderhack.org/'));
+if (httpLeak) {
+  console.error(`finalize-sitemap: non-https loc detected: ${httpLeak.loc}`);
+  process.exit(1);
+}
 
 console.log(`Sitemap finalized: ${total} URLs`);
 for (const w of written) {
