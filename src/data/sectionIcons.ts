@@ -6,7 +6,7 @@ export const featureIcons: Record<string, IconName> = {
   'Radar & Loot': 'featureRadar',
   'Aimbot': 'featureAimbot',
   'Utility Suite': 'featureUtilitySuite',
-  'Loot Assist': 'compareAutoFarm',
+  'Target Assist': 'compareAutoFarm',
   'Stream Proof': 'streamProof',
   'Radar Hack': 'compareZoomHack',
   'Cloud Config & Updates': 'compareCloudBackup',
@@ -50,7 +50,7 @@ export const heroStatusPills: { icon: IconName; label: string }[] = [
   { icon: 'softAim', label: 'Soft Aim Ready' },
   { icon: 'noRecoil', label: 'No Recoil' },
   { icon: 'streamProof', label: 'Stream Proof' },
-  { icon: 'lootEsp', label: 'Loot ESP' },
+  { icon: 'lootEsp', label: 'Ground Target ESP' },
   { icon: 'skeletonEsp', label: 'Skeleton ESP' },
   { icon: 'uavRadar', label: 'UAV Radar' },
   { icon: 'mapHack', label: 'ESP Wallhack' },
@@ -98,7 +98,7 @@ export const productAcquisitionStepIcons: IconName[] = [
 /** Product detail requirement tiles — prefer compat-style icons where mapped */
 export const productRequirementIcons: Partial<Record<IconName, IconName>> = {
   reqWindows: 'compatWindows',
-  reqEpic: 'compatEpic',
+  reqSteam: 'compatSteam',
   reqSettings: 'compatPackage',
   reqWifi: 'compatWifi',
   reqCpu: 'compatMonitor',
@@ -116,7 +116,7 @@ export function requirementDisplayIcon(icon: IconName): IconName {
 export const compatibilityIcons: IconName[] = [
   'compatWindows',
   'compatPackage',
-  'compatEpic',
+  'compatSteam',
   'compatMonitor',
   'compatRefresh',
   'compatWifi',

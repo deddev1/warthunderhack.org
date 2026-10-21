@@ -24,11 +24,11 @@ export function websiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Fortnite Cheats',
+    name: 'War Thunder Hack',
     url: `${SITE_ORIGIN}/`,
     inLanguage: 'en-US',
     description:
-      'Fortnite cheats with aimbot, ESP, and radar hack, Skin Changer and ranked-safe tiers for PC.',
+      'War Thunder hack with aimbot, ESP, and radar hack, Camo Unlocker and ranked-safe tiers for PC.',
   };
 }
 
@@ -38,7 +38,7 @@ export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Fortnite Cheats',
+    name: 'War Thunder Hack',
     url: `${SITE_ORIGIN}/`,
     logo: `${SITE_ORIGIN}/logo.svg`,
     email: SUPPORT_EMAIL,
@@ -66,7 +66,7 @@ export function collectionPageSchema(input: { name: string; description: string;
     inLanguage: 'en-US',
     isPartOf: {
       '@type': 'WebSite',
-      name: 'Fortnite Cheats',
+      name: 'War Thunder Hack',
       url: `${SITE_ORIGIN}/`,
     },
   };
@@ -82,7 +82,7 @@ export function webPageSchema(input: { name: string; description: string; url: s
     inLanguage: 'en-US',
     isPartOf: {
       '@type': 'WebSite',
-      name: 'Fortnite Cheats',
+      name: 'War Thunder Hack',
       url: `${SITE_ORIGIN}/`,
     },
   };
@@ -131,7 +131,7 @@ export function discussionForumPostingSchema(input: {
     url: canonicalUrl(input.url),
     author: { '@type': 'Person', name: input.author },
     commentCount: input.comments,
-    isPartOf: { '@type': 'CollectionPage', name: 'Fortnite Cheats Forum', url: canonicalUrl('/forum/') },
+    isPartOf: { '@type': 'CollectionPage', name: 'War Thunder Hack Forum', url: canonicalUrl('/forum/') },
   };
 }
 
@@ -156,7 +156,7 @@ export function productSchema(input: {
     sku: input.sku ?? input.url.replace(/\//g, '-'),
     brand: {
       '@type': 'Brand',
-      name: 'Fortnite Cheats',
+      name: 'War Thunder Hack',
     },
     ...(input.image ? { image: absoluteAssetUrl(input.image) } : {}),
     offers: {
@@ -166,7 +166,7 @@ export function productSchema(input: {
       availability: 'https://schema.org/InStock',
       seller: {
         '@type': 'Organization',
-        name: 'Fortnite Cheats',
+        name: 'War Thunder Hack',
       },
     },
   };
@@ -209,11 +209,11 @@ export function articleSchema(input: {
     inLanguage: 'en-US',
     author: {
       '@type': 'Organization',
-      name: 'Fortnite Cheats',
+      name: 'War Thunder Hack',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Fortnite Cheats',
+      name: 'War Thunder Hack',
       logo: {
         '@type': 'ImageObject',
         url: `${SITE_ORIGIN}/logo.svg`,

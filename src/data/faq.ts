@@ -29,13 +29,13 @@ function link(text: string, href: string): string {
   return `<a href="${normalizeInternalPath(href)}">${text}</a>`;
 }
 
-const elite = link('Fortnite Elite', productPath('elite'));
+const elite = link('War Thunder Elite', productPath('elite'));
 const lite = link('Lite tier (ESP wallhack & ESP)', ROUTES.products);
 const pro = link('Pro tier (scripts included)', ROUTES.products);
-const productsHub = link('Fortnite products', ROUTES.products);
+const productsHub = link('War Thunder products', ROUTES.products);
 const hwid = link('HWID Spoofer', productPath('hwid-spoofer'));
 const ugc = link('UGC', productPath('ugc'));
-const skin = link('Skin Changer', productPath('unlock-all'));
+const skin = link('Camo Unlocker', productPath('unlock-all'));
 const faqPage = link('full FAQ', ROUTES.faq);
 const blog = link('blog guides', ROUTES.blog);
 
@@ -44,29 +44,29 @@ export const siteFaqs: SiteFaqItem[] = [
     id: 'status',
     topic: 'setup',
     icon: 'faqStatus',
-    q: 'Where do I check if Fortnite cheats are online?',
-    a: a('The live status banner is on fortnite-cheats.com and in the Discord #status channel. Always check after a Fortnite or EAC update.'),
+    q: 'Where do I check if War Thunder hack are online?',
+    a: a('The live status banner is on warthunderhack.org and in the Discord #status channel. Always check after a War Thunder or Gaijin update.'),
   },
   {
     id: 'after-buy',
     topic: 'setup',
     icon: 'faqAfterBuy',
     q: 'What happens after I buy?',
-    a: a('Your portal unlocks the loader, setup guide and config library via our secure checkout. Follow the guide before launching Fortnite.'),
+    a: a('Your portal unlocks the loader, setup guide and config library via our secure checkout. Follow the guide before launching War Thunder.'),
   },
   {
     id: 'ban-risk',
     topic: 'safety',
     icon: 'faqBanRisk',
-    q: 'Can I get banned using third-party fortnite cheats?',
-    a: a('Yes—any modification carries risk. EAC and report systems evolve. Read current status and accept the risk before use.'),
+    q: 'Can I get banned using third-party War Thunder hack?',
+    a: a('Yes—any modification carries risk. Gaijin and report systems evolve. Read current status and accept the risk before use.'),
   },
   {
     id: 'platforms',
     topic: 'setup',
     icon: 'faqPlatforms',
     q: 'Which platforms are supported?',
-    a: a('Fortnite via Epic Games Launcher on Windows 10/11 64-bit only. macOS and Linux are not supported.'),
+    a: a('War Thunder via Gaijin Launcher / Steam on Windows 10/11 64-bit only. macOS and Linux are not supported.'),
   },
   {
     id: 'license-move',
@@ -86,8 +86,8 @@ export const siteFaqs: SiteFaqItem[] = [
     id: 'what-is-esp',
     topic: 'esp',
     icon: 'faqWhatIsEsp',
-    q: 'What is Fortnite ESP wallhack / ESP?',
-    a: `ESP wallhack and player ESP show enemy positions, chests, loot and POI camps through storm circle. ${lite} covers awareness overlays. ${pro} and ${elite} add script modules on top.`,
+    q: 'What is War Thunder ESP wallhack / ESP?',
+    a: `ESP wallhack and vehicle ESP show enemy positions, vehicles, objectives and airfields through capture zone. ${lite} covers awareness overlays. ${pro} and ${elite} add script modules on top.`,
     scopes: ['lite', 'pro', 'elite'],
   },
   {
@@ -102,7 +102,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'plans',
     icon: 'faqWhichTierEsp',
     q: 'Which tier do I need for ESP wallhack only?',
-    a: `${lite} is awareness only: player ESP, chest locator, loot timers and radar hack. ${pro} adds aimbot. ${elite} adds bots, kill steal and Skin Changer.`,
+    a: `${lite} is awareness only: vehicle ESP, vehicle locator, spawn timers and radar hack. ${pro} adds aimbot. ${elite} adds assists, kill confirm and Camo Unlocker.`,
     scopes: ['lite'],
   },
   {
@@ -110,7 +110,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'scripts',
     icon: 'faqWhichTierScripts',
     q: 'Which tier includes Aimbot?',
-    a: `${pro} ships Aimbot, Smooth Aim, Sticky Aim and Hotkey macros. ${elite} includes everything in Pro plus Loot Assist and Auto Finish. ${lite} has no aimbot automation.`,
+    a: `${pro} ships Aimbot, Smooth Aim, Sticky Aim and Hotkey macros. ${elite} includes everything in Pro plus Target Assist and Auto Parts Assist. ${lite} has no aimbot automation.`,
     scopes: ['pro'],
   },
   {
@@ -118,7 +118,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'plans',
     icon: 'faqRankTiers',
     q: 'How do you rank Lite vs Pro vs Elite?',
-    a: `Map awareness only → ${lite}. Ranked gunfights with aimbot → ${pro}. Full bot suite and priority patches → ${elite}. Compare on each cheat page or the ${faqPage}.`,
+    a: `Map awareness only → ${lite}. Ranked tank fights with aimbot → ${pro}. Full assist suite and priority patches → ${elite}. Compare on each cheat page or the ${faqPage}.`,
   },
   {
     id: 'elite-slots',
@@ -139,7 +139,7 @@ export const siteFaqs: SiteFaqItem[] = [
     id: 'undetected',
     topic: 'safety',
     icon: 'faqUndetected',
-    q: 'Are undetected Fortnite cheats guaranteed?',
+    q: 'Are undetected War Thunder hack guaranteed?',
     a: a('No. Undetected is current status on the product page—not a permanent guarantee. Stop if the build shows updating, testing, or detected.'),
   },
   {
@@ -147,14 +147,14 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'safety',
     icon: 'faqEspSafer',
     q: 'Is ESP wallhack safer than aimbot?',
-    a: a('ESP is quieter in replay than obvious bot patterns, but it is still a cheat. EAC does not ignore overlays because you left aimbot off.'),
+    a: a('ESP is quieter in replay than obvious bot patterns, but it is still a cheat. Gaijin does not ignore overlays because you left aimbot off.'),
   },
   {
     id: 'hwid-when',
     topic: 'products',
     icon: 'faqHwidWhen',
     q: 'When do I need the HWID Spoofer?',
-    a: `Use ${hwid} when fresh Epic accounts fail instantly on one PC but work elsewhere—hardware enforcement. Not for account-only EAC cases; see ${ugc} instead.`,
+    a: `Use ${hwid} when fresh Gaijin accounts fail instantly on one PC but work elsewhere—hardware enforcement. Not for account-only Gaijin cases; see ${ugc} instead.`,
     scopes: ['hwid-spoofer'],
   },
   {
@@ -162,14 +162,14 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'products',
     icon: 'faqUgcWhat',
     q: 'What is UGC?',
-    a: `${ugc} (Unban & Governance Control) is an appeal workspace for Epic account restrictions and EAC bans—custom workflows and case tracking, not a guaranteed unban service.`,
+    a: `${ugc} (Unban & Governance Control) is an appeal workspace for Gaijin account restrictions and Gaijin bans—custom workflows and case tracking, not a guaranteed unban service.`,
     scopes: ['ugc'],
   },
   {
     id: 'skin-changer',
     topic: 'products',
     icon: 'faqSkinChanger',
-    q: 'Does Skin Changer modify my Epic locker?',
+    q: 'Does Camo Unlocker modify my Gaijin inventory?',
     a: `${skin} previews cosmetics locally on your client. Other players see your real inventory. Included with ${elite}; available standalone for cosmetic preview only.`,
     scopes: ['unlock-all'],
   },
@@ -177,15 +177,15 @@ export const siteFaqs: SiteFaqItem[] = [
     id: 'external-loader',
     topic: 'products',
     icon: 'faqExternalLoader',
-    q: 'Is the loader injected into the Epic Games folder?',
-    a: `Fortnite Cheats runs external with cloud config sync—no files injected into the Fortnite directory. EAC risk still applies. See ${productsHub}.`,
+    q: 'Is the loader injected into the Gaijin Games folder?',
+    a: `War Thunder Hack runs external with cloud config sync—no files injected into the War Thunder directory. Gaijin risk still applies. See ${productsHub}.`,
   },
   {
     id: 'blog-vs-cheats',
     topic: 'blog',
     icon: 'faqBlogVsCheats',
     q: 'Are blog cheat codes the same as ranked cheats?',
-    a: `No. Blog articles about Epic console commands apply only in custom lobbies with cheats enabled. Ranked fortnite cheats are separate products—see ${lite}, ${pro} and ${elite}.`,
+    a: `No. Blog articles about Gaijin console commands apply only in custom lobbies with cheats enabled. Ranked War Thunder hack are separate products—see ${lite}, ${pro} and ${elite}.`,
   },
   {
     id: 'blog-setup',
@@ -206,7 +206,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'plans',
     icon: 'faqWhoLite',
     q: 'Who should stay on Lite?',
-    a: `Players who only want map awareness—ESP, chests, loot—and will not touch aimbot automation. If you keep enabling combo aimbot, buy ${pro} instead.`,
+    a: `Players who only want map awareness—ESP, vehicles, objectives—and will not touch aimbot automation. If you keep enabling full aimbot, buy ${pro} instead.`,
     scopes: ['lite'],
   },
   {
@@ -214,7 +214,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'plans',
     icon: 'faqWhoPro',
     q: 'Who should buy Pro?',
-    a: `Ranked players who want Aimbot, Smooth Aim and Hotkey macros with ESP wallhack included. Pro is the most popular tier at fortnite-cheats.com.`,
+    a: `Ranked players who want Aimbot, Smooth Aim and Hotkey macros with ESP wallhack included. Pro is the most popular tier at warthunderhack.org.`,
     scopes: ['pro'],
   },
   {
@@ -222,29 +222,29 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'plans',
     icon: 'faqWhoElite',
     q: 'Who should buy Elite?',
-    a: `Operators who want Loot Assist, Auto Finish, Skin Changer and priority patch delivery when slots are open.`,
+    a: `Operators who want Target Assist, Auto Parts Assist, Camo Unlocker and priority patch delivery when slots are open.`,
     scopes: ['elite'],
   },
   {
-    id: 'eac-update',
+    id: 'gaijin-update',
     topic: 'safety',
     icon: 'faqEacUpdate',
-    q: 'What should I do after a EAC update?',
-    a: a('Check fortnite-cheats.com status and Discord #status. Do not launch until the banner shows online. Load conservative presets after any patch.'),
+    q: 'What should I do after a Gaijin update?',
+    a: a('Check warthunderhack.org status and Discord #status. Do not launch until the banner shows online. Load conservative presets after any patch.'),
   },
   {
     id: 'discord-help',
     topic: 'setup',
     icon: 'faqDiscordHelp',
     q: 'How do I get install help?',
-    a: a('Open Discord after purchase with your order email, Windows version and Fortnite client build. Staff walk through loader setup live.'),
+    a: a('Open Discord after purchase with your order email, Windows version and War Thunder client build. Staff walk through loader setup live.'),
   },
   {
     id: 'zero-build-ranked',
     topic: 'plans',
     icon: 'faqZoomRanked',
-    q: 'Do tiers work in Zero Build and ranked?',
-    a: `Yes—${lite}, ${pro} and ${elite} include Zero Build and ranked presets in the portal. Tune distance caps and script delay before your first queue.`,
+    q: 'Do tiers work in Realistic Battles and ranked?',
+    a: `Yes—${lite}, ${pro} and ${elite} include Realistic Battles and ranked presets in the portal. Tune distance caps and script delay before your first queue.`,
   },
   {
     id: 'zoom-hack',
@@ -258,16 +258,16 @@ export const siteFaqs: SiteFaqItem[] = [
     id: 'auto-farm',
     topic: 'scripts',
     icon: 'faqAutoFarm',
-    q: 'Which tier includes Loot Assist?',
-    a: `Loot Assist, Rotation Assist AI and Auto loadout manager are ${elite} only. ${pro} covers combat aimbot without bot farming.`,
+    q: 'Which tier includes Target Assist?',
+    a: `Target Assist, Rotation Assist AI and Auto loadout manager are ${elite} only. ${pro} covers combat aimbot without bot farming.`,
     scopes: ['elite'],
   },
   {
     id: 'private-cheats',
     topic: 'safety',
     icon: 'faqPrivateCheats',
-    q: 'What are private Fortnite cheats?',
-    a: a('Private means per-user keys and maintained builds—not public zip packs. Fortnite Cheats ships portal delivery for ESP, aimbot and ESP wallhack tiers.'),
+    q: 'What are private War Thunder hack?',
+    a: a('Private means per-user keys and maintained builds—not public zip packs. War Thunder Hack ships portal delivery for ESP, aimbot and ESP wallhack tiers.'),
   },
   {
     id: 'faq-more',
@@ -291,7 +291,7 @@ export function getAllFaqs(): SiteFaqItem[] {
 /** Shared FAQ block copy + filters (home, /faq/, products, blog). */
 export const SITE_FAQ_SECTION_COPY = {
   eyebrow: 'All topics',
-  title: 'Fortnite cheats FAQ',
+  title: 'War Thunder hack FAQ',
   subtitle: 'Filter by cheat plans, ESP wallhack, aimbot, products, setup and guides.',
 } as const;
 
@@ -309,7 +309,7 @@ export const SITE_FAQ_FILTER_TOPICS: FaqTopic[] = [
 /** Section copy when FAQ list is scoped to the current page (not /faq/). */
 export const CONTEXTUAL_FAQ_SECTION_COPY = {
   eyebrow: 'Cheat FAQ',
-  title: 'Fortnite cheats questions',
+  title: 'War Thunder hack questions',
   subtitle: 'Straight answers on aimbot, ESP, bans and setup — see the full FAQ for every topic.',
 } as const;
 
@@ -330,7 +330,7 @@ export function getProductFaqs(slug: string, kind: 'tier' | 'utility'): SiteFaqI
   );
   const scoped = siteFaqs.filter((f) => f.scopes?.includes(slug));
   const tierCompare = siteFaqs.filter((f) =>
-    ['rank-lite-vs-pro', 'compare-plans', 'undetected', 'eac-update'].includes(f.id),
+    ['rank-lite-vs-pro', 'compare-plans', 'undetected', 'gaijin-update'].includes(f.id),
   );
 
   const combined =
@@ -353,7 +353,7 @@ const blogTopicFaqs: Record<string, SiteFaqItem[]> = {
       topic: 'blog',
       icon: 'faqBlogGuideStart',
       q: 'Should I use console cheat codes in ranked?',
-      a: a('No. Creative lobby cheat codes only work in custom games with cheats enabled. Ranked requires separate fortnite cheats from fortnite-cheats.com tiers.'),
+      a: a('No. Custom Battles lobby cheat codes only work in custom games with cheats enabled. Ranked requires separate War Thunder hack from warthunderhack.org tiers.'),
     },
     {
       id: 'blog-guide-tier',
@@ -383,12 +383,12 @@ const blogTopicFaqs: Record<string, SiteFaqItem[]> = {
       topic: 'blog',
       icon: 'faqBlogSetupLobby',
       q: 'Should I test in a lobby first?',
-      a: a('Yes. Load conservative presets in a lobby or Zero Build before ranked. Tune script delay and ESP distance caps over several sessions.'),
+      a: a('Yes. Load conservative presets in a lobby or Realistic Battles before ranked. Tune script delay and ESP distance caps over several sessions.'),
     },
   ],
   Security: [
     {
-      id: 'blog-sec-eac',
+      id: 'blog-sec-gaijin',
       topic: 'blog',
       icon: 'faqBlogSecEac',
       q: 'Does this article guarantee undetected status?',
@@ -417,7 +417,7 @@ const defaultBlogFaqs: SiteFaqItem[] = [
     topic: 'blog',
     icon: 'faqBlogDefault3',
     q: 'Will settings in this article work next patch?',
-    a: a('Re-check status after every Fortnite update. Portal presets update with patch notes—reload configs instead of copying old sliders.'),
+    a: a('Re-check status after every War Thunder update. Portal presets update with patch notes—reload configs instead of copying old sliders.'),
   },
 ];
 
@@ -431,7 +431,7 @@ export function getBlogFaqs(tag: string, slug: string): SiteFaqItem[] {
       topic: 'esp',
       icon: 'faqBlogSlugEsp',
       q: 'Which tier covers ESP wallhack from this article?',
-      a: `${lite} includes player ESP, chest locator and loot timers. ${pro} adds combat aimbot on the same overlay stack.`,
+      a: `${lite} includes vehicle ESP, vehicle locator and spawn timers. ${pro} adds combat aimbot on the same overlay stack.`,
     });
   }
   if (slug.includes('script') || slug.includes('combo') || slug.includes('auto-combo')) {
@@ -443,12 +443,12 @@ export function getBlogFaqs(tag: string, slug: string): SiteFaqItem[] {
       a: `${pro} and ${elite} ship Aimbot and related modules. ${lite} is ESP wallhack only.`,
     });
   }
-  if (slug.includes('hwid') || slug.includes('ban') || slug.includes('eac')) {
+  if (slug.includes('hwid') || slug.includes('ban') || slug.includes('eac') || slug.includes('gaijin')) {
     slugHints.push({
       id: 'blog-slug-hwid',
       topic: 'products',
       icon: 'faqBlogSlugHwid',
-      q: 'Does this article replace HWID or UGC products?',
+      q: 'Does this article replace HWID or account recovery products?',
       a: `Recovery guides complement ${hwid} and ${ugc}—read product pages for workflow scope and realistic outcomes.`,
     });
   }
@@ -457,23 +457,23 @@ export function getBlogFaqs(tag: string, slug: string): SiteFaqItem[] {
 }
 
 export const compareRows = [
-  { feature: 'Player ESP & player boxes', icon: 'comparePlayerEsp' as const, lite: true, pro: true, elite: true },
-  { feature: 'Chest & loot locator', icon: 'compareWardLocator' as const, lite: true, pro: true, elite: true },
+  { feature: 'Vehicle ESP & vehicle boxes', icon: 'comparePlayerEsp' as const, lite: true, pro: true, elite: true },
+  { feature: 'Vehicle & objective locator', icon: 'compareWardLocator' as const, lite: true, pro: true, elite: true },
   { feature: 'Loot spawn timers', icon: 'compareRuneTimer' as const, lite: true, pro: true, elite: true },
   { feature: 'Radar', icon: 'compareZoomHack' as const, lite: true, pro: true, elite: true },
   { feature: 'Streamproof overlay', icon: 'compareStreamproof' as const, lite: true, pro: true, elite: true },
   { feature: 'MiniESP wallhack overlay', icon: 'compareRadarHack' as const, lite: true, pro: true, elite: true },
   { feature: 'Aimbot', icon: 'compareAutoCombo' as const, lite: false, pro: true, elite: true },
   { feature: 'Smooth Aim & Sticky Aim', icon: 'compareSmoothAim' as const, lite: false, pro: true, elite: true },
-  { feature: 'Bone Priority', icon: 'compareTargetSelector' as const, lite: false, pro: true, elite: true },
-  { feature: 'Hotkey macros (heals/shields)', icon: 'compareHotkeyMacros' as const, lite: false, pro: true, elite: true },
+  { feature: 'Weak-spot Priority', icon: 'compareTargetSelector' as const, lite: false, pro: true, elite: true },
+  { feature: 'Hotkey macros (repairs/parts)', icon: 'compareHotkeyMacros' as const, lite: false, pro: true, elite: true },
   { feature: 'FOV radius drawing', icon: 'compareAbilityRadius' as const, lite: false, pro: true, elite: true },
   { feature: 'Smoke alert integration', icon: 'compareSmokeAlert' as const, lite: false, pro: true, elite: true },
-  { feature: 'Loot Assist', icon: 'compareAutoFarm' as const, lite: false, pro: false, elite: true },
-  { feature: 'Auto Finish', icon: 'compareAutoKillSteal' as const, lite: false, pro: false, elite: true },
-  { feature: 'Auto Shield Break', icon: 'compareAutoShieldBreak' as const, lite: false, pro: false, elite: true },
+  { feature: 'Target Assist', icon: 'compareAutoFarm' as const, lite: false, pro: false, elite: true },
+  { feature: 'Auto Parts Assist', icon: 'compareAutoKillSteal' as const, lite: false, pro: false, elite: true },
+  { feature: 'Auto Repair Assist', icon: 'compareAutoShieldBreak' as const, lite: false, pro: false, elite: true },
   { feature: 'Full ESP wallhack suite', icon: 'compareFullMapHack' as const, lite: false, pro: false, elite: true },
-  { feature: 'Skin Changer (Unlock All)', icon: 'compareSkinChanger' as const, lite: false, pro: false, elite: true },
+  { feature: 'Camo Unlocker (Unlock All)', icon: 'compareSkinChanger' as const, lite: false, pro: false, elite: true },
   { feature: 'Priority patch queue', icon: 'comparePriorityPatch' as const, lite: false, pro: false, elite: true },
   { feature: 'Direct dev Discord support', icon: 'compareDevSupport' as const, lite: false, pro: false, elite: true },
   { feature: 'Cloud config backup', icon: 'compareCloudBackup' as const, lite: true, pro: true, elite: true },

@@ -10,74 +10,74 @@ export interface PageSeoEntry {
 
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'Buy Undetected Fortnite Cheats | Aimbot, ESP & Wallhack',
+    title: 'Buy Undetected War Thunder Hack | Aimbot, ESP & Wallhack',
     description:
-      'Buy undetected Fortnite cheats for PC — aimbot, ESP, wallhack, radar, loot ESP and skin changer. Updated after every Easy Anti-Cheat patch.',
+      'Buy undetected War Thunder hack for PC — aimbot, ESP, wallhack, radar, ground target ESP and camo unlocker. Updated after every Gaijin anti-cheat patch.',
   },
-  '/products/fortnite-cheats/': {
-    title: 'Buy Fortnite Cheats | Elite, HWID Spoofer & Skin Changer',
+  '/products/warthunder-hack/': {
+    title: 'Buy War Thunder Hack | Elite, HWID Spoofer & Camo Unlocker',
     description:
-      'Shop Fortnite cheats for PC: Elite aimbot & ESP wallhack, HWID spoofer, UGC recovery and Skin Changer. Instant delivery after checkout.',
+      'Shop War Thunder hack for PC: Elite aimbot & ESP wallhack, HWID spoofer, account recovery and Camo Unlocker. Instant delivery after checkout.',
   },
-  '/products/fortnite-cheats/elite/': {
-    title: 'Buy Fortnite Elite Cheats | Aimbot, ESP & Loot Assist',
+  '/products/warthunder-hack/elite/': {
+    title: 'Buy War Thunder Elite Hack | Aimbot, ESP & Target Assist',
     description:
-      'Buy Fortnite Elite cheats with aimbot, ESP wallhack, loot assist, Auto Finish, Skin Changer and priority EAC patch updates.',
+      'Buy War Thunder Elite hack with aimbot, ESP wallhack, target assist, Auto Parts Assist, Camo Unlocker and priority Gaijin patch updates.',
   },
-  '/products/fortnite-cheats/hwid-spoofer/': {
-    title: 'Buy Fortnite HWID Spoofer | Hardware Ban Bypass',
+  '/products/warthunder-hack/hwid-spoofer/': {
+    title: 'Buy War Thunder HWID Spoofer | Hardware Ban Bypass',
     description:
-      'Buy a Fortnite HWID spoofer for PC hardware bans — disk/MAC tools, compatibility scan and post-spoof checks before you launch cheats again.',
+      'Buy a War Thunder HWID spoofer for PC hardware bans — disk/MAC tools, compatibility scan and post-spoof checks before you launch cheats again.',
   },
-  '/products/fortnite-cheats/ugc/': {
-    title: 'Buy Fortnite UGC | EAC & Epic Ban Appeal Tools',
+  '/products/warthunder-hack/ugc/': {
+    title: 'Buy War Thunder account recovery | Gaijin & Gaijin Ban Appeal Tools',
     description:
-      'Buy Fortnite UGC (Unban & Governance Control) to organize Epic and EAC ban appeals, dispute workflows and case tracking.',
+      'Buy War Thunder account recovery (Unban & Governance Control) to organize Gaijin and Gaijin ban appeals, dispute workflows and case tracking.',
   },
-  '/products/fortnite-cheats/unlock-all/': {
-    title: 'Buy Fortnite Skin Changer | Unlock All Cosmetics',
+  '/products/warthunder-hack/unlock-all/': {
+    title: 'Buy War Thunder Camo Unlocker | Unlock All Cosmetics',
     description:
-      'Buy Fortnite Skin Changer / Unlock All — local outfit, wrap and pickaxe previews with your Fortnite cheats loadout.',
+      'Buy War Thunder Camo Unlocker / Unlock All — local camo, decal and vehicle skin previews with your War Thunder hack loadout.',
   },
-  '/products/fortnite-cheats/utilities/': {
-    title: 'Buy Fortnite Cheat Utilities | HWID, UGC & Skin Changer',
+  '/products/warthunder-hack/utilities/': {
+    title: 'Buy War Thunder Cheat Utilities | HWID, UGC & Camo Unlocker',
     description:
-      'Buy Fortnite cheat utilities: HWID spoofer after hardware bans, UGC for Epic/EAC appeals, and local Skin Changer / Unlock All.',
+      'Buy War Thunder hack utilities: HWID spoofer after hardware bans, account recovery for Gaijin appeals, and local Camo Unlocker / Unlock All.',
   },
   '/blog/': {
-    title: 'Fortnite Cheat Guides | Aimbot, ESP Wallhack & EAC',
+    title: 'War Thunder Hack Guides | Aimbot, ESP Wallhack & Gaijin',
     description:
-      'Read Fortnite cheat guides on aimbot setup, ESP wallhack, Lite vs Pro, Creative practice and Easy Anti-Cheat patch-day checks.',
+      'Read War Thunder hack guides on aimbot setup, ESP wallhack, Lite vs Pro, Test Drive practice and Gaijin anti-cheat patch-day checks.',
   },
   '/forum/': {
-    title: 'Fortnite Cheats Forum | Aimbot, ESP & Setup Help',
+    title: 'War Thunder Hack Forum | Aimbot, ESP & Setup Help',
     description:
-      'Fortnite cheats forum for aimbot configs, ESP wallhack setup, EAC status and product questions before you buy.',
+      'War Thunder hack forum for aimbot configs, ESP wallhack setup, Gaijin status and product questions before you buy.',
   },
   '/faq/': {
-    title: 'Fortnite Cheats FAQ | Aimbot, ESP, Bans & Setup',
+    title: 'War Thunder Hack FAQ | Aimbot, ESP, Bans & Setup',
     description:
-      'Fortnite cheats FAQ — tiers, aimbot, ESP wallhack, radar, HWID spoofer, Skin Changer, bans and loader setup before checkout.',
+      'War Thunder hack FAQ — tiers, aimbot, ESP wallhack, radar, HWID spoofer, Camo Unlocker, bans and loader setup before checkout.',
   },
   '/terms/': {
-    title: 'Terms for Fortnite Cheats | License & Refunds',
+    title: 'Terms for War Thunder Hack | License & Refunds',
     description:
-      'Terms for buying Fortnite cheats on fortnite-cheats.com — license use, delivery, refunds and account risk.',
+      'Terms for buying War Thunder hack on warthunderhack.org — license use, delivery, refunds and account risk.',
   },
   '/privacy/': {
-    title: 'Privacy Policy | Fortnite Cheats Shop',
+    title: 'Privacy Policy | War Thunder Hack Shop',
     description:
-      'How the Fortnite cheats shop at fortnite-cheats.com uses analytics, cookies and contact data.',
+      'How the War Thunder hack shop at warthunderhack.org uses analytics, cookies and contact data.',
   },
   '/about/': {
-    title: 'About Fortnite Cheats | Buy PC Aimbot & ESP',
+    title: 'About War Thunder Hack | Buy PC Aimbot & ESP',
     description:
-      'About Fortnite Cheats — we sell PC Fortnite cheats (aimbot, ESP, wallhack), guides and utilities at fortnite-cheats.com.',
+      'About War Thunder Hack — we sell PC War Thunder hack (aimbot, ESP, wallhack), guides and utilities at warthunderhack.org.',
   },
   '/support/': {
-    title: 'Fortnite Cheats Support | Loader, HWID & Checkout',
+    title: 'War Thunder Hack Support | Loader, HWID & Checkout',
     description:
-      'Fortnite cheats support for loader setup, aimbot/ESP configs, HWID spoofing and checkout help — 24/7 Discord.',
+      'War Thunder hack support for loader setup, aimbot/ESP configs, HWID spoofing and checkout help — 24/7 Discord.',
   },
 };
 

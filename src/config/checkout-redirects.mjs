@@ -1,6 +1,6 @@
 /** Checkout destinations keyed by internal product id (no affiliate codes). */
 export const CHECKOUT_URLS = {
-  fortnite: 'https://zadeyo.com/go/QRH?to=%2Fproducts%2Ffortnite',
+  warthunder: 'https://zadeyo.com/go/QRH?to=%2Fproducts%2Fwarthunder',
   skinChanger: 'https://zadeyo.com/products/skin-changer',
   hwidSpoofer: 'https://zadeyo.com/products/hwid-spoofer',
   ugc: 'https://zadeyo.com/products/ugc',
@@ -8,8 +8,8 @@ export const CHECKOUT_URLS = {
 
 /** Checkout paths → external product URLs (used by Node serve + Astro middleware). */
 export const CHECKOUT_PATH_REDIRECTS = new Map([
-  ['/go/fortnite', CHECKOUT_URLS.fortnite],
-  ['/go/fortnite/', CHECKOUT_URLS.fortnite],
+  ['/go/warthunder', CHECKOUT_URLS.warthunder],
+  ['/go/warthunder/', CHECKOUT_URLS.warthunder],
   ['/go/skin-changer', CHECKOUT_URLS.skinChanger],
   ['/go/skin-changer/', CHECKOUT_URLS.skinChanger],
   ['/go/hwid-spoofer', CHECKOUT_URLS.hwidSpoofer],

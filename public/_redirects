@@ -1,6 +1,6 @@
 # Checkout (same-tab 302 → Zadeyo)
-/go/fortnite  https://zadeyo.com/go/QRH?to=%2Fproducts%2Ffortnite  302
-/go/fortnite/  https://zadeyo.com/go/QRH?to=%2Fproducts%2Ffortnite  302
+/go/warthunder  https://zadeyo.com/go/QRH?to=%2Fproducts%2Fwarthunder  302
+/go/warthunder/  https://zadeyo.com/go/QRH?to=%2Fproducts%2Fwarthunder  302
 /go/skin-changer  https://zadeyo.com/products/skin-changer  302
 /go/skin-changer/  https://zadeyo.com/products/skin-changer  302
 /go/hwid-spoofer  https://zadeyo.com/products/hwid-spoofer  302
@@ -8,22 +8,32 @@
 /go/ugc  https://zadeyo.com/products/ugc  302
 /go/ugc/  https://zadeyo.com/products/ugc  302
 
+# Legacy Fortnite paths → War Thunder Hack
+/go/fortnite  /go/warthunder/  301
+/go/fortnite/  /go/warthunder/  301
+/products/fortnite-cheats  /products/warthunder-hack/  301
+/products/fortnite-cheats/  /products/warthunder-hack/  301
+/products/fortnite-cheats/elite  /products/warthunder-hack/elite/  301
+/products/fortnite-cheats/elite/  /products/warthunder-hack/elite/  301
+/products/fortnite-cheats/utilities  /products/warthunder-hack/utilities/  301
+/products/fortnite-cheats/utilities/  /products/warthunder-hack/utilities/  301
+
 # Legacy paths
 /contact  /support/  301
 /contact/  /support/  301
-/cheats  /products/fortnite-cheats/  301
-/cheats/  /products/fortnite-cheats/  301
-/cheats/lite  /products/fortnite-cheats/  301
-/cheats/lite/  /products/fortnite-cheats/  301
-/cheats/pro  /products/fortnite-cheats/  301
-/cheats/pro/  /products/fortnite-cheats/  301
-/cheats/elite  /products/fortnite-cheats/elite/  301
-/cheats/elite/  /products/fortnite-cheats/elite/  301
-/cheats/compare  /blog/fortnite-lite-vs-pro/  301
-/cheats/compare/  /blog/fortnite-lite-vs-pro/  301
-/products/dota-2-cheats  /products/fortnite-cheats/  301
-/products/dota-2-cheats/  /products/fortnite-cheats/  301
-/products/dota-2-cheats/elite  /products/fortnite-cheats/elite/  301
-/products/dota-2-cheats/elite/  /products/fortnite-cheats/elite/  301
-/products/dota-2-cheats/utilities  /products/fortnite-cheats/utilities/  301
-/products/dota-2-cheats/utilities/  /products/fortnite-cheats/utilities/  301
+/cheats  /products/warthunder-hack/  301
+/cheats/  /products/warthunder-hack/  301
+/cheats/lite  /products/warthunder-hack/  301
+/cheats/lite/  /products/warthunder-hack/  301
+/cheats/pro  /products/warthunder-hack/  301
+/cheats/pro/  /products/warthunder-hack/  301
+/cheats/elite  /products/warthunder-hack/elite/  301
+/cheats/elite/  /products/warthunder-hack/elite/  301
+/cheats/compare  /blog/warthunder-lite-vs-pro/  301
+/cheats/compare/  /blog/warthunder-lite-vs-pro/  301
+/products/dota-2-cheats  /products/warthunder-hack/  301
+/products/dota-2-cheats/  /products/warthunder-hack/  301
+/products/dota-2-cheats/elite  /products/warthunder-hack/elite/  301
+/products/dota-2-cheats/elite/  /products/warthunder-hack/elite/  301
+/products/dota-2-cheats/utilities  /products/warthunder-hack/utilities/  301
+/products/dota-2-cheats/utilities/  /products/warthunder-hack/utilities/  301

@@ -4,11 +4,11 @@ import { getPageSeoEntry } from './pageSeo';
 
 export const SITE_ORIGIN = `https://${t.site.domain}`;
 
-export const DEFAULT_OG_IMAGE = '/images/gameplay/fortnite-esp-wallhack.png';
+export const DEFAULT_OG_IMAGE = '/images/gameplay/warthunder-esp-wallhack.png';
 
 export const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID as string | undefined;
 
-/** @example @fortnitecheats */
+/** @example @warthunderhack */
 export const TWITTER_SITE = import.meta.env.PUBLIC_TWITTER_SITE as string | undefined;
 
 export const TWITTER_CREATOR = import.meta.env.PUBLIC_TWITTER_CREATOR as string | undefined;
@@ -52,11 +52,11 @@ export function pageTitle(keyword: string, brand = t.site.name): string {
   return `${trimmed}${suffix}`;
 }
 
-/** Keep meta descriptions blunt about Fortnite cheats for SERP snippets. */
+/** Keep meta descriptions blunt about War Thunder hack for SERP snippets. */
 export function cheatMetaDescription(text: string): string {
   const trimmed = text.trim();
-  if (/fortnite\s*cheat/i.test(trimmed)) return trimmed;
-  return `Fortnite cheats guide: ${trimmed}`;
+  if (/war\s*thunder\s*(hack|cheat)/i.test(trimmed)) return trimmed;
+  return `War Thunder hack guide: ${trimmed}`;
 }
 
 export const DEFAULT_OG_IMAGE_WIDTH = 1200;

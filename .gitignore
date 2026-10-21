@@ -27,3 +27,7 @@ pnpm-debug.log*
 _import/
 .seo-baseline/
 
+
+# local brand source (favicons generated into public/)
+public/brand-icon-source.jpg
+

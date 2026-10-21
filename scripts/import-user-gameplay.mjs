@@ -1,58 +1,150 @@
 /**
- * Copy user cheat screenshots (long Windows paths) into public/images,
- * then write SEO-named PNGs for gameplay + blog.
+ * Copy user War Thunder cheat screenshots into public/images,
+ * then write SEO-named PNGs for gameplay + blog with alt text.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
 
 const assetsDir =
-  'C:\\Users\\3Tee System\\.cursor\\projects\\c-Users-3Tee-System-Downloads-fortnite-cheats-com-main\\assets';
+  'C:\\Users\\3Tee System\\.cursor\\projects\\c-Users-3Tee-System-Downloads-warthunderhack-org-main\\assets';
 const importDir = path.resolve('_import');
 const gameplayDir = path.resolve('public/images/gameplay');
 const blogDir = path.resolve('public/images/blog');
 
-/** Skip Valorant screenshot only. */
-const SKIP_SUBSTRINGS = ['065800-cb09d0b5'];
+/** Prefer this upload order (matches the 11 screenshots provided). */
+const SOURCE_ORDER = [
+  'Screenshot_2026-10-21_042129', // air ESP dogfight
+  'Screenshot_2026-10-21_042234', // tank optics blue box
+  'Screenshot_2026-10-21_042114', // chams + ESP burning
+  'Screenshot_2026-10-21_042319', // aimbot lock M2A4
+  'Screenshot_2026-10-21_042055', // desert green chams
+  'Screenshot_2026-10-21_042045', // tropical multi ESP
+  'Screenshot_2026-10-21_042107', // trench full overlay
+  'Screenshot_2026-10-21_042311', // red/yellow vehicle ESP
+  'Screenshot_2026-10-21_042208', // trajectory + long-range ESP
+  'Screenshot_2026-10-21_042422', // valley FOV aimbot
+  'Screenshot_2026-10-21_042428', // air ground-target ESP
+];
 
 const GAMEPLAY = [
-  { file: 'fortnite-esp-wallhack.png', alt: 'Fortnite ESP wallhack cheat gameplay with player boxes distance tags and aimbot FOV' },
-  { file: 'fortnite-aimbot-combat.png', alt: 'Fortnite aimbot cheat gameplay with FOV circle and green skeleton ESP on enemy' },
-  { file: 'fortnite-player-esp.png', alt: 'Fortnite player ESP wallhack showing skeletons boxes and distance meters' },
-  { file: 'fortnite-radar-hack.png', alt: 'Fortnite radar and ESP overlay with enemy name tags health and range markers' },
-  { file: 'fortnite-auto-aim.png', alt: 'Fortnite sniper aimbot cheat with green ESP box weapon label and FOV circle' },
-  { file: 'fortnite-loot-radar.png', alt: 'Fortnite loot and chest ESP gameplay with enemy boxes and distance trackers' },
-  { file: 'fortnite-skin-changer.png', alt: 'Fortnite cheat gameplay with chams skeleton ESP and aim lock on pier' },
-  { file: 'fortnite-thermal-esp.png', alt: 'Fortnite thermal vision ESP showing skeleton wallhack HP and distance' },
-  { file: 'fortnite-build-fight-esp.png', alt: 'Fortnite build fight ESP wallhack with names HP bars and FOV circle' },
-  { file: 'fortnite-arena-wallhack.png', alt: 'Fortnite arena wallhack ESP with wireframe players and weapon tags' },
-  { file: 'fortnite-spawn-island-esp.png', alt: 'Fortnite spawn island ESP with skeleton boxes and aimbot reticle' },
-  { file: 'fortnite-long-range-esp.png', alt: 'Fortnite long range ESP wallhack with enemy names health and weapons' },
-  { file: 'fortnite-aimbot-lock.png', alt: 'Fortnite aimbot lock with green skeleton ESP FOV circle and head priority' },
-  { file: 'fortnite-chams-esp.png', alt: 'Fortnite chams and skeleton ESP cheat on wooden pier' },
-  { file: 'fortnite-squad-esp.png', alt: 'Fortnite multi-player ESP wallhack with boxes skeletons and distances' },
-  { file: 'fortnite-combat-esp.png', alt: 'Fortnite combat ESP and aimbot overlay in open field fight' },
+  {
+    file: 'warthunder-esp-wallhack.png',
+    alt: 'War Thunder air ESP wallhack cheat gameplay with enemy plane name tags, distances, and green aimbot reticle over an island coastline',
+    caption: 'Air ESP wallhack',
+    captionDesc: 'Enemy and ally plane tags with distances and aimbot reticle.',
+  },
+  {
+    file: 'warthunder-aimbot-combat.png',
+    alt: 'War Thunder tank gunner aimbot cheat with blue ESP bounding box, green crosshair lock, and distance marker on an enemy tank',
+    caption: 'Tank aimbot',
+    captionDesc: 'Gunner optics with ESP box and aimbot lock.',
+  },
+  {
+    file: 'warthunder-vehicle-esp.png',
+    alt: 'War Thunder vehicle ESP and chams cheat showing green boxes, purple highlights, and distance labels on enemy tanks through gunner sight',
+    caption: 'Vehicle ESP / chams',
+    captionDesc: 'ESP boxes and chams with model and distance labels.',
+  },
+  {
+    file: 'warthunder-radar-hack.png',
+    alt: 'War Thunder ESP wallhack with yellow bounding box, player name, tank model, health bar, and aimbot circles locked on a light tank',
+    caption: 'ESP + aimbot lock',
+    captionDesc: 'Name, model, HP bar and aimbot reticle on target.',
+  },
+  {
+    file: 'warthunder-auto-aim.png',
+    alt: 'War Thunder desert tank wallhack with bright green enemy silhouette, bounding box, and distance readout through gunner optics',
+    caption: 'Wallhack silhouette',
+    captionDesc: 'Green chams silhouette and range through cover.',
+  },
+  {
+    file: 'warthunder-target-radar.png',
+    alt: 'War Thunder multi-tank ESP cheat with green bounding boxes and distance markers on burning enemies in a tropical map',
+    caption: 'Multi-target ESP',
+    captionDesc: 'Several enemy tanks boxed with live distances.',
+  },
+  {
+    file: 'warthunder-camo-unlocker.png',
+    alt: 'War Thunder third-person tank cheat overlay with player list, green ESP boxes across the map, and large green aimbot reticle',
+    caption: 'Full ESP overlay',
+    captionDesc: 'Player list, map-wide ESP boxes and aimbot FOV.',
+  },
+  {
+    file: 'warthunder-thermal-esp.png',
+    alt: 'War Thunder tank ESP wallhack with red and yellow 3D boxes, player names, and meter distances highlighting enemies through terrain',
+    caption: '3D box ESP',
+    captionDesc: 'Colored 3D boxes with names and distances.',
+  },
+  {
+    file: 'warthunder-ground-battle-esp.png',
+    alt: 'War Thunder ground battle ESP with red target boxes, green aim lines, blue shell trajectory arc, and long-range distance tags',
+    caption: 'Trajectory + ESP',
+    captionDesc: 'Ballistic arc, aim lines and long-range ESP tags.',
+  },
+  {
+    file: 'warthunder-arena-wallhack.png',
+    alt: 'War Thunder valley tank aimbot with purple FOV circle, enemy name tags, tank models, and distance indicators through rocky terrain',
+    caption: 'FOV aimbot',
+    captionDesc: 'Purple FOV circle with name and model ESP tags.',
+  },
+  {
+    file: 'warthunder-spawn-esp.png',
+    alt: 'War Thunder aircraft ESP showing ground targets with Russian vehicle labels, distance markers, and purple aim circle over a forested map',
+    caption: 'Air-to-ground ESP',
+    captionDesc: 'Ground unit labels and distances from the air.',
+  },
+  {
+    file: 'warthunder-long-range-esp.png',
+    alt: 'War Thunder long-range tank ESP cheat with green bounding boxes, model names, and meter distances across an open battlefield',
+    caption: 'Long-range ESP',
+    captionDesc: 'Distant enemy boxes with model and range text.',
+  },
+  {
+    file: 'warthunder-aimbot-lock.png',
+    alt: 'War Thunder aimbot lock on enemy tank with green crosshair, ESP box, and crew distance readout in gunner sight',
+    caption: 'Aimbot lock',
+    captionDesc: 'Locked aimbot reticle with ESP box overlay.',
+  },
+  {
+    file: 'warthunder-chams-esp.png',
+    alt: 'War Thunder chams ESP cheat highlighting enemy tanks in bright green through hills with bounding boxes and distance labels',
+    caption: 'Chams ESP',
+    captionDesc: 'Bright chams through terrain with range labels.',
+  },
+  {
+    file: 'warthunder-squad-esp.png',
+    alt: 'War Thunder squad ESP wallhack showing multiple enemy tanks boxed in green with live distances during a tropical fight',
+    caption: 'Squad ESP',
+    captionDesc: 'Multiple enemy tanks tracked with ESP boxes.',
+  },
+  {
+    file: 'warthunder-combat-esp.png',
+    alt: 'War Thunder combat ESP and aimbot overlay with player list, green boxes on enemies, and FOV reticle during a live tank battle',
+    caption: 'Combat ESP',
+    captionDesc: 'Full combat overlay with list, boxes and FOV.',
+  },
 ];
 
 const BLOG = [
-  'fortnite-cheat-codes-guide.png',
-  'fortnite-console-cheats-tips.png',
-  'how-to-use-fortnite-cheat-codes.png',
-  'fortnite-cheats-features-guide.png',
-  'fortnite-console-commands-cheats.png',
-  'fortnite-lite-vs-pro.png',
-  'fortnite-elite-tier-guide.png',
-  'fortnite-aimbot-ranked-guide.png',
-  'fortnite-esp-wallhack-setup.png',
-  'fortnite-radar-hack-guide.png',
-  'fortnite-skin-changer-guide.png',
-  'eac-patch-day-checklist.png',
-  'fortnite-hwid-spoofer-after-ban.png',
-  'how-to-buy-fortnite-cheats-2026.png',
-  'fortnite-aimbot-combat-guide.png',
-  'eac-bypass-fortnite-guide.png',
-  'fortnite-external-cheat-guide.png',
-  'fortnite-stream-proof-setup.png',
+  'warthunder-cheat-codes-guide.png',
+  'warthunder-console-cheats-tips.png',
+  'how-to-use-warthunder-cheat-codes.png',
+  'warthunder-cheats-features-guide.png',
+  'warthunder-console-commands-cheats.png',
+  'warthunder-lite-vs-pro.png',
+  'warthunder-elite-tier-guide.png',
+  'warthunder-aimbot-ranked-guide.png',
+  'warthunder-esp-wallhack-setup.png',
+  'warthunder-radar-hack-guide.png',
+  'warthunder-camo-unlocker-guide.png',
+  'gaijin-patch-day-checklist.png',
+  'warthunder-hwid-spoofer-after-ban.png',
+  'how-to-buy-warthunder-hack-2026.png',
+  'warthunder-aimbot-combat-guide.png',
+  'gaijin-bypass-warthunder-guide.png',
+  'warthunder-external-cheat-guide.png',
+  'warthunder-stream-proof-setup.png',
 ];
 
 function longPath(p) {
@@ -65,12 +157,21 @@ function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
 }
 
-function listAssetPngs() {
+function listAssetShots() {
   const entries = fs.readdirSync(longPath(assetsDir));
-  return entries
-    .filter((f) => f.toLowerCase().endsWith('.png'))
-    .filter((f) => !SKIP_SUBSTRINGS.some((s) => f.includes(s)))
-    .sort();
+  const images = entries.filter((f) => /\.(png|jpe?g|webp)$/i.test(f) && f.includes('Screenshot'));
+
+  const ordered = [];
+  for (const key of SOURCE_ORDER) {
+    const match = images.find((f) => f.includes(key));
+    if (match) ordered.push(match);
+  }
+
+  // Any leftover screenshots not in the preferred order
+  for (const f of images.sort()) {
+    if (!ordered.includes(f)) ordered.push(f);
+  }
+  return ordered;
 }
 
 async function writeResizedPng(src, dest) {
@@ -87,7 +188,7 @@ ensureDir(importDir);
 ensureDir(gameplayDir);
 ensureDir(blogDir);
 
-const sources = listAssetPngs();
+const sources = listAssetShots();
 console.log(`Found ${sources.length} source screenshots`);
 
 const shortFiles = [];
@@ -96,9 +197,9 @@ for (let i = 0; i < sources.length; i++) {
   const short = `shot-${String(i + 1).padStart(2, '0')}.png`;
   const from = longPath(path.join(assetsDir, name));
   const to = path.join(importDir, short);
-  fs.copyFileSync(from, to);
+  await writeResizedPng(from, to);
   shortFiles.push(to);
-  console.log('copied', short, '←', name.slice(-40));
+  console.log('imported', short, '←', name.slice(-50));
 }
 
 if (!shortFiles.length) {
@@ -111,12 +212,17 @@ for (let i = 0; i < GAMEPLAY.length; i++) {
   const src = shortFiles[i % shortFiles.length];
   const dest = path.join(gameplayDir, GAMEPLAY[i].file);
   await writeResizedPng(src, dest);
-  alts.push({ file: GAMEPLAY[i].file, alt: GAMEPLAY[i].alt, srcIndex: i % shortFiles.length });
+  alts.push({
+    file: GAMEPLAY[i].file,
+    alt: GAMEPLAY[i].alt,
+    caption: GAMEPLAY[i].caption,
+    captionDesc: GAMEPLAY[i].captionDesc,
+    srcIndex: i % shortFiles.length,
+  });
 }
 
 for (let i = 0; i < BLOG.length; i++) {
-  // Offset so blog covers prefer different frames than gameplay slots when possible
-  const src = shortFiles[(i + 3) % shortFiles.length];
+  const src = shortFiles[(i + 2) % shortFiles.length];
   await writeResizedPng(src, path.join(blogDir, BLOG[i]));
 }
 
@@ -125,4 +231,6 @@ fs.writeFileSync(
   JSON.stringify({ gameplay: alts, sourceCount: shortFiles.length }, null, 2),
 );
 
+// Emit TS-ready gallery snippet hints
 console.log('Done. Next: npm run optimize:images');
+console.log('Update src/data/products.ts gallery alt/caption from scripts/gameplay-image-alts.json');
