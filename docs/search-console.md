@@ -5,14 +5,15 @@ You verify the domain at your DNS provider—no HTML meta tags in the repo.
 ## Setup (once)
 
 1. Open [Google Search Console](https://search.google.com/search-console) and add the **domain** property for `warthunderhack.org` if it is not already there.
-2. Under **Sitemaps**, submit the index first (required):
+2. Under **Sitemaps**, submit the primary urlset (required):
    - `https://warthunderhack.org/sitemap.xml`
-3. Optional — submit child sitemaps too (same URLs, clearer GSC status per section):
+3. Optional — submit section sitemaps too:
    - `https://warthunderhack.org/sitemap-pages.xml`
    - `https://warthunderhack.org/sitemap-products.xml`
    - `https://warthunderhack.org/sitemap-blog.xml`
    - `https://warthunderhack.org/sitemap-forum.xml`
-4. Repeat in [Bing Webmaster Tools](https://www.bing.com/webmasters) if you use Bing.
+4. Confirm `https://warthunderhack.org/sitemap.xml` returns **HTTP 200** and `Content-Type: application/xml` before submitting.
+5. Repeat in [Bing Webmaster Tools](https://www.bing.com/webmasters) if you use Bing.
 
 ## Monthly tune (15 minutes)
 

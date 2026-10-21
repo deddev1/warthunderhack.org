@@ -74,25 +74,52 @@ function splitUrl(url) {
   return { pathname: pathname || '/', query, fragment };
 }
 
-function resolveFile(pathname) {
-  let normalized = decodeURIComponent(pathname);
+/** Keep resolved paths under dist/ (Linux path.join drops the base if a segment is absolute). */
+function isInsideDist(filePath) {
+  const resolved = path.resolve(filePath);
+  const root = path.resolve(distDir);
+  return resolved === root || resolved.startsWith(root + path.sep);
+}
 
-  // Prefer exact static files (sitemap.xml, robots.txt, etc.) before HTML fallback.
-  const exactPath = path.normalize(path.join(distDir, normalized.replace(/\/$/, '') || ''));
-  if (
-    exactPath.startsWith(distDir) &&
-    fs.existsSync(exactPath) &&
-    fs.statSync(exactPath).isFile()
-  ) {
-    return exactPath;
+function existingFile(filePath) {
+  if (!isInsideDist(filePath)) return null;
+  try {
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) return filePath;
+  } catch {
+    return null;
+  }
+  return null;
+}
+
+/**
+ * Map URL pathname → file under dist/.
+ * Critical: never pass a leading "/" into path.join/resolve as a second arg on Linux.
+ */
+function resolveFile(pathname) {
+  let normalized = decodeURIComponent(pathname || '/');
+  if (!normalized.startsWith('/')) normalized = `/${normalized}`;
+
+  // Strip leading slash so joins stay inside distDir on Linux.
+  const rel = normalized.slice(1);
+
+  // Exact static assets: /sitemap.xml, /robots.txt, /favicon.ico, /_astro/..., /images/...
+  if (rel && path.extname(rel) && !rel.endsWith('/')) {
+    const exact = existingFile(path.resolve(distDir, rel));
+    if (exact) return exact;
   }
 
-  if (normalized.endsWith('/')) normalized += 'index.html';
-  else if (!path.extname(normalized)) normalized += '.html';
+  // Directory indexes: / → index.html, /about/ → about/index.html
+  const dirRel = rel.replace(/\/+$/, '');
+  const indexFile = existingFile(path.resolve(distDir, dirRel, 'index.html'));
+  if (indexFile) return indexFile;
 
-  const filePath = path.normalize(path.join(distDir, normalized));
-  if (!filePath.startsWith(distDir)) return null;
-  return filePath;
+  // Rare flat HTML fallback: /about → about.html
+  if (dirRel && !path.extname(dirRel)) {
+    const flat = existingFile(path.resolve(distDir, `${dirRel}.html`));
+    if (flat) return flat;
+  }
+
+  return null;
 }
 
 function getCacheControl(filePath) {
@@ -135,6 +162,7 @@ function sendFile(req, res, filePath, statusCode = 200) {
     'Content-Type': MIME[ext] ?? 'application/octet-stream',
     'Cache-Control': getCacheControl(filePath),
     Vary: 'Accept-Encoding',
+    'X-Content-Type-Options': 'nosniff',
   };
 
   const encoding =
@@ -144,7 +172,9 @@ function sendFile(req, res, filePath, statusCode = 200) {
 
   const stream = fs.createReadStream(filePath);
   stream.on('error', () => {
-    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    if (!res.headersSent) {
+      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    }
     res.end('Not found');
   });
 
@@ -166,7 +196,7 @@ function sendFile(req, res, filePath, statusCode = 200) {
   stream.pipe(res);
 }
 
-const server = http.createServer((req, res) => {
+function handleRequest(req, res) {
   const canonicalRedirect = getCanonicalRedirect(req);
   if (canonicalRedirect) {
     res.writeHead(301, { Location: canonicalRedirect });
@@ -190,21 +220,38 @@ const server = http.createServer((req, res) => {
   }
 
   const filePath = resolveFile(pathname);
-  if (filePath && fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+  if (filePath) {
     sendFile(req, res, filePath);
     return;
   }
 
-  const fallback = path.join(distDir, '404.html');
-  if (fs.existsSync(fallback)) {
+  const fallback = path.resolve(distDir, '404.html');
+  if (existingFile(fallback)) {
     sendFile(req, res, fallback, 404);
     return;
   }
 
   res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
   res.end('Not found');
+}
+
+const server = http.createServer((req, res) => {
+  try {
+    handleRequest(req, res);
+  } catch (err) {
+    console.error('request error', req.url, err);
+    if (!res.headersSent) {
+      res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
+    }
+    res.end('Internal Server Error');
+  }
 });
 
 server.listen(port, '0.0.0.0', () => {
   console.log(`Serving ${distDir} on http://0.0.0.0:${port} (gzip/br enabled)`);
+  // Smoke-check critical SEO files so deploy logs show sitemap health.
+  for (const p of ['/sitemap.xml', '/robots.txt', '/']) {
+    const f = resolveFile(p);
+    console.log(`  resolve ${p} → ${f ? path.relative(distDir, f) : 'MISSING'}`);
+  }
 });

@@ -187,17 +187,7 @@ for (const child of childFiles) {
   written.push({ name: child.name, lastmod, count: urls.length });
 }
 
-const indexXml = renderIndex(written);
-// GSC entry point: /sitemap.xml is the index (also mirrored as sitemap-index.xml).
-fs.writeFileSync(path.join(dist, 'sitemap.xml'), indexXml, 'utf8');
-fs.writeFileSync(path.join(dist, 'sitemap-index.xml'), indexXml, 'utf8');
-
-// Keep a combined urlset for IndexNow + tools that expect one file of <url> entries.
 const allUrls = childFiles.flatMap((c) => byBucket[c.key]);
-fs.writeFileSync(path.join(dist, 'sitemap-0.xml'), renderUrlset(allUrls), 'utf8');
-
-// Point IndexNow at the combined urlset (not the index).
-fs.writeFileSync(path.join(dist, 'sitemap-all.xml'), renderUrlset(allUrls), 'utf8');
 
 // Fail build if any non-https page URL slipped through.
 const httpLeak = allUrls.find((u) => !u.loc.startsWith('https://warthunderhack.org/'));
@@ -206,9 +196,20 @@ if (httpLeak) {
   process.exit(1);
 }
 
+const combinedXml = renderUrlset(allUrls);
+const indexXml = renderIndex(written);
+
+// GSC primary entry: single HTTPS urlset (most reliable; avoids child-fetch HTTP errors).
+fs.writeFileSync(path.join(dist, 'sitemap.xml'), combinedXml, 'utf8');
+fs.writeFileSync(path.join(dist, 'sitemap-all.xml'), combinedXml, 'utf8');
+fs.writeFileSync(path.join(dist, 'sitemap-0.xml'), combinedXml, 'utf8');
+
+// Keep a sitemap index + section files for optional GSC submits.
+fs.writeFileSync(path.join(dist, 'sitemap-index.xml'), indexXml, 'utf8');
+
 console.log(`Sitemap finalized: ${total} URLs`);
 for (const w of written) {
   console.log(`  ${w.name}: ${w.count}`);
 }
-console.log('  sitemap.xml / sitemap-index.xml → index');
-console.log('  sitemap-all.xml → combined urlset');
+console.log('  sitemap.xml → combined https urlset (GSC primary)');
+console.log('  sitemap-index.xml → section index');

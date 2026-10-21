@@ -3,10 +3,14 @@ Allow: /
 
 Disallow: /go/
 
+# Primary sitemap (full HTTPS urlset — submit this in Google Search Console)
 Sitemap: https://warthunderhack.org/sitemap.xml
+
+# Optional section sitemaps
 Sitemap: https://warthunderhack.org/sitemap-pages.xml
 Sitemap: https://warthunderhack.org/sitemap-products.xml
 Sitemap: https://warthunderhack.org/sitemap-blog.xml
 Sitemap: https://warthunderhack.org/sitemap-forum.xml
+Sitemap: https://warthunderhack.org/sitemap-index.xml
 
 # RSS: https://warthunderhack.org/rss.xml
