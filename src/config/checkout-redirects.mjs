@@ -1,9 +1,9 @@
-/** Checkout destinations keyed by internal product id (no affiliate codes). */
+/** Checkout destinations keyed by internal product id (affiliate go links). */
 export const CHECKOUT_URLS = {
-  warthunder: 'https://zadeyo.com/go/QRH?to=%2Fproducts%2Fwarthunder',
-  skinChanger: 'https://zadeyo.com/products/skin-changer',
-  hwidSpoofer: 'https://zadeyo.com/products/hwid-spoofer',
-  ugc: 'https://zadeyo.com/products/ugc',
+  warthunder: 'https://levocheats.com/go/QRH?to=%2Fwar-thunder-cheats',
+  skinChanger: 'https://levocheats.com/go/QRH?to=%2Fwar-thunder-cheats',
+  hwidSpoofer: 'https://levocheats.com/go/QRH?to=%2Fhwid-spoofer',
+  ugc: 'https://levocheats.com/go/QRH?to=%2Fwar-thunder-cheats',
 };
 
 /** Checkout paths → external product URLs (used by Node serve + Astro middleware). */
