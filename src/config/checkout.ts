@@ -1,8 +1,6 @@
 import { CHECKOUT_URLS } from './checkout-redirects.mjs';
 
-/**
- * External checkout URLs — server-side redirect targets only (never use as visible href).
- */
+/** External checkout destinations (Levocheats affiliate links). */
 export const CHECKOUT = CHECKOUT_URLS;
 
 export type CheckoutProduct = keyof typeof CHECKOUT;
@@ -19,15 +17,15 @@ export const CHECKOUT_SLUG_TO_PRODUCT = Object.fromEntries(
   Object.entries(CHECKOUT_SLUGS).map(([product, slug]) => [slug, product as CheckoutProduct]),
 ) as Record<string, CheckoutProduct>;
 
-/** Internal checkout path shown to users (hides external URL on hover). */
+/** Checkout href used on Buy / Get Access buttons (direct affiliate URL). */
 export function checkoutPath(product: CheckoutProduct = 'warthunder'): string {
-  return `/go/${CHECKOUT_SLUGS[product]}/`;
+  return CHECKOUT[product];
 }
 
-/** Default product checkout redirect (replaces legacy Discord CTAs). */
+/** Default product checkout URL. */
 export const PRIMARY_CHECKOUT_PATH = checkoutPath('warthunder');
 
-/** Map internal product slugs to checkout redirect paths. */
+/** Map internal product slugs to checkout URLs. */
 export function checkoutForSlug(slug: string): string {
   switch (slug) {
     case 'unlock-all':
@@ -45,34 +43,41 @@ export function checkoutForSlug(slug: string): string {
   }
 }
 
-/** Resolve blog CTA or legacy href values to internal checkout paths. */
+/** Resolve blog CTA or legacy href values to live checkout URLs. */
 export function resolveCheckoutHref(href: string): string {
-  if (!href.startsWith('http')) {
-    return href.startsWith('/') ? href : `/${href}`;
+  const normalized = href.startsWith('http') || href.startsWith('/') ? href : `/${href}`;
+
+  // Legacy /go/* paths → external checkout
+  const goMatch = normalized.match(/^\/go\/([^/?#]+)\/?/);
+  if (goMatch) {
+    const product = CHECKOUT_SLUG_TO_PRODUCT[goMatch[1]!];
+    if (product) return checkoutPath(product);
   }
 
-  for (const [product, url] of Object.entries(CHECKOUT) as [CheckoutProduct, string][]) {
-    if (href === url || href.startsWith(`${url}?`) || href.startsWith(`${url}/`)) {
-      return checkoutPath(product);
+  if (normalized.startsWith('http')) {
+    for (const [product, url] of Object.entries(CHECKOUT) as [CheckoutProduct, string][]) {
+      if (normalized === url || normalized.startsWith(`${url}?`) || normalized.startsWith(`${url}/`)) {
+        return checkoutPath(product);
+      }
+    }
+
+    // Legacy / encoded product paths → checkout
+    if (normalized.includes('%2Fproducts%2Fcloud-dma') || normalized.includes('/products/cloud-dma')) {
+      return checkoutPath('warthunder');
+    }
+    if (normalized.includes('%2Fproducts%2Fskin-changer') || normalized.includes('/products/skin-changer')) {
+      return checkoutPath('skinChanger');
+    }
+    if (normalized.includes('%2Fproducts%2Fhwid-spoofer') || normalized.includes('/products/hwid-spoofer')) {
+      return checkoutPath('hwidSpoofer');
+    }
+    if (normalized.includes('%2Fproducts%2Fugc') || normalized.includes('/products/ugc')) {
+      return checkoutPath('ugc');
+    }
+    if (normalized.includes('%2Fproducts%2Fwarthunder') || normalized.includes('/products/warthunder')) {
+      return checkoutPath('warthunder');
     }
   }
 
-  // Legacy / encoded product paths → internal checkout
-  if (href.includes('%2Fproducts%2Fcloud-dma') || href.includes('/products/cloud-dma')) {
-    return checkoutPath('warthunder');
-  }
-  if (href.includes('%2Fproducts%2Fskin-changer') || href.includes('/products/skin-changer')) {
-    return checkoutPath('skinChanger');
-  }
-  if (href.includes('%2Fproducts%2Fhwid-spoofer') || href.includes('/products/hwid-spoofer')) {
-    return checkoutPath('hwidSpoofer');
-  }
-  if (href.includes('%2Fproducts%2Fugc') || href.includes('/products/ugc')) {
-    return checkoutPath('ugc');
-  }
-  if (href.includes('%2Fproducts%2Fwarthunder') || href.includes('/products/warthunder')) {
-    return checkoutPath('warthunder');
-  }
-
-  return href;
+  return normalized;
 }

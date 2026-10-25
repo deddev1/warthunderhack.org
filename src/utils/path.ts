@@ -1,9 +1,13 @@
+import { resolveCheckoutHref } from '../config/checkout';
 import { PRODUCT_BASE } from '../config/site';
 
 /** Normalize internal paths to match trailingSlash: 'always' and canonical URLs. */
 export function withTrailingSlash(path: string): string {
   if (!path || path.startsWith('http') || path.startsWith('#') || path.startsWith('mailto:')) {
     return path;
+  }
+  if (path.startsWith('/go/')) {
+    return resolveCheckoutHref(path);
   }
   const [pathname, hash = ''] = path.split('#');
   const normalized = pathname === '/' || pathname.endsWith('/') ? pathname : `${pathname}/`;
@@ -27,7 +31,13 @@ export const LEGACY_PATH_MAP: Record<string, string> = {
 };
 
 export function normalizeInternalPath(href: string): string {
-  if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('/go/')) {
+  if (!href || href.startsWith('mailto:')) {
+    return href;
+  }
+  if (href.startsWith('/go/')) {
+    return resolveCheckoutHref(href);
+  }
+  if (href.startsWith('http')) {
     return href;
   }
 
