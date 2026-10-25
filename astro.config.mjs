@@ -21,7 +21,7 @@ export default defineConfig({
     '/go/fortnite/': 'https://levocheats.com/go/QRH?to=%2Fwar-thunder-cheats',
     '/go/warthunder/': 'https://levocheats.com/go/QRH?to=%2Fwar-thunder-cheats',
     '/go/skin-changer/': 'https://levocheats.com/go/QRH?to=%2Fwar-thunder-cheats',
-    '/go/hwid-spoofer/': 'https://levocheats.com/go/QRH?to=%2Fwar-thunder-cheats',
+    '/go/hwid-spoofer/': 'https://levocheats.com/go/QRH?to=%2Fhwid-spoofer',
     '/go/ugc/': 'https://levocheats.com/go/QRH?to=%2Fwar-thunder-cheats',
     '/contact/': '/support/',
   },
