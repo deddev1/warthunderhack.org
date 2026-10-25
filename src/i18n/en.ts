@@ -200,7 +200,7 @@ export const en: Translations = {
       'Buy your War Thunder hack, download the loader, load a preset, then open War Thunder. Discord help is there if you get stuck.',
     ctaPrimary: 'Buy cheats',
     ctaSecondary: 'Setup FAQ',
-    ctaPrimaryHref: productBase,
+    ctaPrimaryHref: PRIMARY_CHECKOUT_PATH,
     ctaSecondaryHref: '/faq/',
     steps: [
       {
@@ -486,7 +486,7 @@ export const en: Translations = {
     titleHighlight: 'in-game cheats.',
     subtitle: 'Buy War Thunder hack, download the loader, turn on modules, save your config for next match.',
     ctaLabel: 'Buy cheats',
-    ctaHref: productBase,
+    ctaHref: PRIMARY_CHECKOUT_PATH,
     ctaSecondary: 'Setup FAQ',
     ctaSecondaryHref: '/faq/',
     items: [

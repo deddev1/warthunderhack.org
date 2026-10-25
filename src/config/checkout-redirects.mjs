@@ -2,7 +2,7 @@
 export const CHECKOUT_URLS = {
   warthunder: 'https://levocheats.com/go/QRH?to=%2Fwar-thunder-cheats',
   skinChanger: 'https://levocheats.com/go/QRH?to=%2Fwar-thunder-cheats',
-  hwidSpoofer: 'https://levocheats.com/go/QRH?to=%2Fhwid-spoofer',
+  hwidSpoofer: 'https://levocheats.com/go/QRH?to=%2Fwar-thunder-cheats',
   ugc: 'https://levocheats.com/go/QRH?to=%2Fwar-thunder-cheats',
 };
 

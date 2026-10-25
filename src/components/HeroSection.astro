@@ -1,6 +1,6 @@
 ---
 import { t } from '../i18n';
-import { ROUTES } from '../utils/path';
+import { PRIMARY_CHECKOUT_PATH } from '../config/checkout';
 import { heroSlides } from '../data/products';
 import { compatibilityIcons, heroStatIcons, heroStatusPills } from '../data/sectionIcons';
 import ImageSlider from './ImageSlider.astro';
@@ -47,11 +47,11 @@ const heroMarqueePills = [
         <div class="flex flex-wrap justify-start gap-3 sm:gap-4">
           <Button
             as="a"
-            href={ROUTES.products}
-            data-scroll-target="products"
+            href={PRIMARY_CHECKOUT_PATH}
             variant="primary"
             size="lg"
             class="rounded-xl"
+            aria-label={t.ui.checkoutAria}
           >
             {h.ctaPrimary}
             <Icon name="arrowRight" size={18} />
